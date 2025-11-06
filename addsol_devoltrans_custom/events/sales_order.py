@@ -16,7 +16,7 @@ def on_submit(doc, method):
         })
 
         # Bypass ALL validate hooks (safe for auto-creation)
-        project.flags.ignore_validate = True
+        # project.flags.ignore_validate = True
         project.insert(ignore_permissions=True)
 
         # Rename project to be more descriptive
@@ -29,10 +29,3 @@ def on_submit(doc, method):
         frappe.msgprint(
             f"Project <b>{project.name}</b> created for Sales Order <b>{doc.name}</b>", indicator="green")
 
-
-# This is what hooks.py will pick up
-doc_events = {
-    "Sales Order": {
-        "on_submit": "addsol_devoltrans_custom.events.sales_order.on_submit"
-    }
-}
