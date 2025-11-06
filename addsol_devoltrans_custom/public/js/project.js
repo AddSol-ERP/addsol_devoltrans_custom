@@ -37,8 +37,8 @@ frappe.ui.form.on("Project", {
 						},
 					});
 					d.show();
-				},
-				__("Actions")
+				}
+				// __("Actions") // Add comma above if uncomment this line.
 			);
 		}
 	},
