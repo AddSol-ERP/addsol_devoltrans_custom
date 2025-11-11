@@ -1,0 +1,15 @@
+include requirements.txt
+recursive-include addsol_devoltrans_custom *.py
+recursive-include addsol_devoltrans_custom *.json
+recursive-include addsol_devoltrans_custom *.md
+recursive-include addsol_devoltrans_custom *.txt
+recursive-include addsol_devoltrans_custom *.html
+recursive-include addsol_devoltrans_custom *.js
+recursive-include addsol_devoltrans_custom *.css
+recursive-include addsol_devoltrans_custom *.png
+recursive-include addsol_devoltrans_custom *.svg
+recursive-include addsol_devoltrans_custom *.ico
+recursive-include addsol_devoltrans_custom *.xml
+recursive-include addsol_devoltrans_custom *.csv
+recursive-include addsol_devoltrans_custom *.yml
+recursive-include addsol_devoltrans_custom *.yaml

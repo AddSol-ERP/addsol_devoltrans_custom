@@ -2,8 +2,26 @@
 frappe.ui.form.on("Project", {
 	refresh(frm) {
 		if (!frm.is_new()) {
-			frm.add_custom_button(
-				"Upload BOM Excel",
+			const group_label = __("BOM Actions");
+			frm.add_custom_button('<i class="fa fa-file-excel-o text-success"></i> Download BOM Template', () => {
+				window.location.href = '/api/method/addsol_devoltrans_custom.api.project_bom_template_download.download_bom_template';
+            // frappe.call({
+            //     method: "addsol_devoltrans_custom.api.project_bom_upload.download_bom_template",
+            //     callback: (r) => {
+            //         // if (!r.exc) {
+            //         //     const blob = new Blob([r.message], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+            //         //     const url = window.URL.createObjectURL(blob);
+            //         //     const a = document.createElement("a");
+            //         //     a.href = url;
+            //         //     a.download = "BOM_Template.xlsx";
+            //         //     a.click();
+            //         //     window.URL.revokeObjectURL(url);
+            //         // }
+            //     }
+            // });
+        }, group_label).addClass('bom-action-btn-secondary');
+			frm.add_custom_button( 
+				'<i class="fa fa-upload text-primary"></i> Upload BOM Excel',
 				async function () {
 					// Show file uploader dialog
 					const d = new frappe.ui.Dialog({
@@ -37,9 +55,8 @@ frappe.ui.form.on("Project", {
 						},
 					});
 					d.show();
-				}
-				// __("Actions") // Add comma above if uncomment this line.
-			);
+				}, group_label).addClass('bom-action-btn-primary')
+			;
 		}
 	},
 });

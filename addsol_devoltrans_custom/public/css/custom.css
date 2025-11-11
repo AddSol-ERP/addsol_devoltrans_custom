@@ -1,0 +1,39 @@
+/* Group Button - Main Dropdown */
+.bom-actions-group {
+    background: linear-gradient(135deg, #1e3a8a, #1e40af) !important;
+    color: white !important;
+    border: 1px solid #1e40af !important;
+    font-weight: 600 !important;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.bom-actions-group:hover {
+    background: linear-gradient(135deg, #172554, #1e3a8a) !important;
+    border-color: #172554 !important;
+}
+
+/* Secondary Button (Download) */
+.bom-action-btn-secondary {
+    color: #4b5563 !important;
+    background-color: #f9fafb !important;
+    border: 1px solid #d1d5db !important;
+}
+
+.bom-action-btn-secondary:hover {
+    background-color: #f3f4f6 !important;
+    color: #1f2937 !important;
+}
+
+/* Primary Button (Upload) */
+.bom-action-btn-primary {
+    color: #1e40af !important;
+    font-weight: 500 !important;
+    background-color: white !important;
+    border: 1px solid #bfdbfe !important;
+}
+
+.bom-action-btn-primary:hover {
+    background-color: #ebf3ff !important;
+    color: #1e3a8a !important;
+    border-color: #93c5fd !important;
+}

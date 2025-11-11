@@ -1,5 +1,21 @@
 import frappe
 
+# Add boolean field
+def create_custom_auto_generate_project_field():
+    """Add 'Auto Generate Project' checkbox to Sales Order"""
+    if not frappe.db.exists("Custom Field", {"dt": "Sales Order", "fieldname": "custom_auto_generate_project"}):
+        frappe.get_doc({
+            "doctype": "Custom Field",
+            "dt": "Sales Order",
+            "fieldname": "custom_auto_generate_project",
+            "label": "Auto Generate Project",
+            "fieldtype": "Check",
+            "insert_after": "customer",  # adjust position as needed
+            "default": 1,
+            "module": "Selling",
+        }).insert(ignore_permissions=True)
+        frappe.clear_cache(doctype="Sales Order")
+
 
 # on Sales Order Submit create a peoject
 def on_submit(doc, method):

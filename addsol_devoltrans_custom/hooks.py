@@ -29,7 +29,7 @@ app_license = "mit"
 # ------------------
 
 # include js, css files in header of desk.html
-# app_include_css = "/assets/addsol_devoltrans_custom/css/addsol_devoltrans_custom.css"
+app_include_css = "/assets/addsol_devoltrans_custom/css/custom.css"
 # app_include_js = "/assets/addsol_devoltrans_custom/js/addsol_devoltrans_custom.js"
 
 # include js, css files in header of web template
@@ -148,6 +148,11 @@ doctype_js = {"Project": "public/js/project.js"}
 # 		"on_trash": "method"
 # 	}
 # }
+
+after_migrate = [
+    "addsol_devoltrans_custom.events.sales_order.create_custom_auto_generate_project_field"
+]
+
 
 doc_events = {
     "Sales Order": {
