@@ -29,7 +29,11 @@ app_license = "mit"
 # ------------------
 
 # include js, css files in header of desk.html
-app_include_css = "/assets/addsol_devoltrans_custom/css/custom.css"
+app_include_css = [
+    "/assets/addsol_devoltrans_custom/css/custom.css",
+    # "/assets/addsol_devoltrans_custom/css/desk_addsol_theme.css",
+    # "/assets/addsol_devoltrans_custom/css/desk_addsol_sidebar_theme.css",
+]
 # app_include_js = "/assets/addsol_devoltrans_custom/js/addsol_devoltrans_custom.js"
 
 # include js, css files in header of web template
@@ -88,6 +92,8 @@ doctype_js = {"Project": "public/js/project.js"}
 
 # before_install = "addsol_devoltrans_custom.install.before_install"
 # after_install = "addsol_devoltrans_custom.install.after_install"
+after_install = "addsol_devoltrans_custom.doctype.item_custom_fields.create_item_custom_fields"
+
 
 # Uninstallation
 # ------------

@@ -1,0 +1,131 @@
+/* ===============================================
+   FULL ERPNext DESK THEME OVERRIDE
+   addsol_devoltrans_custom
+   =============================================== */
+
+/* -------- ROOT COLOR VARIABLES (Edit only these) -------- */
+:root {
+    --theme-primary: #134E9B;
+    --theme-primary-dark: #0d3a74;
+    --theme-sidebar-bg: #102b47;
+    --theme-sidebar-text: #c9d2de;
+    --theme-sidebar-active-bg: #0b2035;
+    --theme-sidebar-active-text: #ffffff;
+    --theme-card-bg: #ffffff;
+    --theme-card-border: #e4e7ec;
+    --theme-form-header-bg: #f1f4f9;
+    --theme-table-header-bg: #f3f6fb;
+    --theme-scrollbar: #1b4f72;
+}
+
+/* -------- NAVBAR -------- */
+.navbar, .navbar .standard-navbar {
+    background-color: var(--theme-primary) !important;
+}
+
+.navbar .navbar-brand {
+    color: #fff !important;
+}
+
+.navbar .navbar-brand:hover {
+    opacity: 0.85;
+}
+
+.navbar .navbar-nav .nav-link {
+    color: #e8eef7 !important;
+}
+
+.navbar .navbar-nav .nav-link:hover {
+    color: #ffffff !important;
+}
+
+/* -------- SIDEBAR -------- */
+/* .layout-side-section {
+    background: var(--theme-sidebar-bg) !important;
+    color: var(--theme-sidebar-text) !important;
+}
+
+.sidebar-item a {
+    color: var(--theme-sidebar-text) !important;
+}
+
+.sidebar-item a:hover {
+    background: var(--theme-sidebar-active-bg) !important;
+    color: var(--theme-sidebar-active-text) !important;
+} */
+
+/* Active / selected link */
+/* .sidebar-item.selected > a {
+    background: var(--theme-sidebar-active-bg) !important;
+    color: var(--theme-sidebar-active-text) !important;
+    font-weight: 600;
+} */
+
+/* -------- WORKSPACE CARDS -------- */
+.widget {
+    background: var(--theme-card-bg) !important;
+    border: 1px solid var(--theme-card-border) !important;
+    border-radius: 8px !important;
+}
+
+.widget:hover {
+    border-color: var(--theme-primary) !important;
+}
+
+/* -------- FORM HEADER -------- */
+.page-head,
+.form-dashboard-section,
+.form-page .form-section-heading {
+    background-color: var(--theme-form-header-bg) !important;
+}
+
+/* -------- BUTTONS -------- */
+.btn-primary {
+    background-color: var(--theme-primary) !important;
+    border-color: var(--theme-primary) !important;
+}
+
+.btn-primary:hover {
+    background-color: var(--theme-primary-dark) !important;
+    border-color: var(--theme-primary-dark) !important;
+}
+
+/* -------- TABLE HEADER -------- */
+.grid-heading-row,
+.table thead th {
+    background: var(--theme-table-header-bg) !important;
+    font-weight: 600 !important;
+}
+
+/* -------- MODALS -------- */
+.modal-header {
+    background: var(--theme-primary) !important;
+    color: #fff !important;
+}
+
+/* -------- SCROLLBAR -------- */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--theme-scrollbar);
+    border-radius: 4px;
+}
+::-webkit-scrollbar-track {
+    background: #dce3ec;
+}
+
+/* -------- BADGES -------- */
+.badge-primary {
+    background: var(--theme-primary) !important;
+}
+
+.tag-pill {
+    background: var(--theme-primary) !important;
+    color: #fff !important;
+}
+
+/* Reduce brightness of light backgrounds */
+.bg-light {
+    background: #f8fafc !important;
+}
