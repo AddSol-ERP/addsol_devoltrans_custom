@@ -1,0 +1,81 @@
+/* ============================================
+   SIDEBAR BACKGROUND + BORDERS
+   ============================================ */
+.app-sidebar {
+    background-color: #1f2937 !important; /* slate-800 */
+    border-right: 1px solid #374151 !important;
+}
+
+/* ============================================
+   SIDEBAR TEXT
+   ============================================ */
+.app-sidebar .sidebar-item-label,
+.app-sidebar .standard-sidebar-label {
+    color: #e5e7eb !important; /* gray-200 */
+}
+
+/* ============================================
+   ICON FIX — WORKS 100% ALWAYS
+   ============================================ */
+/* ERPNext uses mask-image for most icons but some icons are <svg>.
+   This rule forces ALL icon types to appear light on dark background. */
+
+.app-sidebar .sidebar-item-icon,
+.app-sidebar .standard-sidebar-item .sidebar-item-icon,
+.app-sidebar .sidebar-item svg,
+.app-sidebar .standard-sidebar-item svg {
+    filter: invert(1) brightness(1.4) !important;  
+    opacity: 0.95 !important;
+}
+
+/* ============================================
+   ACTIVE ITEM
+   ============================================ */
+.app-sidebar .sidebar-item.selected {
+    background-color: #374151 !important; /* slate-700 */
+}
+
+.app-sidebar .sidebar-item.selected .sidebar-item-label {
+    color: #ffffff !important;
+}
+
+.app-sidebar .sidebar-item.selected .sidebar-item-icon,
+.app-sidebar .sidebar-item.selected svg {
+    filter: invert(1) brightness(1.9) !important;
+    opacity: 1 !important;
+}
+
+/* ============================================
+   HOVER STATE
+   ============================================ */
+.app-sidebar .sidebar-item:hover {
+    background-color: #2d3748 !important; /* slate-700 hover */
+}
+
+.app-sidebar .sidebar-item:hover .sidebar-item-label {
+    color: #ffffff !important;
+}
+
+.app-sidebar .sidebar-item:hover .sidebar-item-icon,
+.app-sidebar .sidebar-item:hover svg {
+    filter: invert(1) brightness(2.1) !important;
+    opacity: 1 !important;
+}
+
+/* ============================================
+   SECTION TITLES (My Work, Modules)
+   ============================================ */
+.app-sidebar .standard-sidebar-section .standard-sidebar-label {
+    color: #9ca3af !important; /* gray-400 */
+    font-weight: 600 !important;
+    letter-spacing: .5px;
+}
+
+/* ============================================
+   REMOVE DEFAULT FILTERS (PREVENT CONFLICTS)
+   ============================================ */
+:root {
+    --icon-brand-filter: none !important;
+    --icon-invert-filter: none !important;
+    --icon-filter: none !important;
+}

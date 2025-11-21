@@ -4,7 +4,7 @@ frappe.ui.form.on("Project", {
 		if (!frm.is_new()) {
 			const group_label = __("BOM Actions");
 			frm.add_custom_button('<i class="fa fa-file-excel-o text-success"></i> Download BOM Template', () => {
-				window.location.href = '/api/method/addsol_devoltrans_custom.api.project_bom_template_download.download_bom_template';
+				window.location.href = `/api/method/addsol_devoltrans_custom.api.project_bom_template_download.download_bom_template?project=${encodeURIComponent(frm.doc.name)}`;
             // frappe.call({
             //     method: "addsol_devoltrans_custom.api.project_bom_upload.download_bom_template",
             //     callback: (r) => {

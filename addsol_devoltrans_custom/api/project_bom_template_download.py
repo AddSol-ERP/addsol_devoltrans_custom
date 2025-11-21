@@ -13,7 +13,7 @@ from openpyxl.worksheet.datavalidation import DataValidation
 #  DOWNLOAD BOM TEMPLATE
 # --------------------------------------------------------------------------- #
 @frappe.whitelist()
-def download_bom_template():
+def download_bom_template(project=None):
     """
     Final template:
       - BOM sheet: rows 1-2 blank, row 3 operations, row 4 blank, row 5 headers, row 6 sample
@@ -21,6 +21,9 @@ def download_bom_template():
       - Validation Data sheet: UOM, Item Group, Operation (visible)
       - Dropdowns (data validation) for UOM and Item Group in BOM/SubAssy1 (rows 6..1000)
     """
+    # Check if Project ID/name is passed
+    if not project:
+        frappe.throw("Project not specified")
 
     # ----------------- Safe master fetch -----------------
     try:
@@ -116,8 +119,10 @@ def download_bom_template():
         cell.font = header_font
 
     # ----------------- BOM sheet -----------------
-    # Rows 1-2 blank
-    ws.append(["BOM Sheet"])
+    # Rows 1
+    # get project Id
+    bom_for = "BOM Sheet - " + project
+    ws.append([bom_for])
     ws.append([])
 
     # Bold header row (row 1)
@@ -125,7 +130,7 @@ def download_bom_template():
         cell.font = header_font
 
     # operations populated from masters (or placeholders)
-    # Row 3: add "Operations" label + operation names
+    # Row 3: add "Operations" label + operation namecs
     ops_row = ["Operations: "] + operations
     ws.append(ops_row)
 
@@ -138,20 +143,20 @@ def download_bom_template():
     # Row 5 headers exactly as expected by upload script
     headers = [
         "Item Code", "Item Name", "Description", "Make", "Part no.",
-        "Qty", "UOM", "Item Group", "Remarks", "Specification Link", "Sub BOM Sheet"
+        "Qty", "UOM", "Item Group", "Remarks", "TC?", "Specification Link", "Sub BOM Sheet"
     ]
     ws.append(headers)  # row 5
 
     # Row 6 sample data
     ws.append([
         "FG-001", "Motor Assembly", "Main motor assembly", "Siemens", "S-MTR-100",
-        1, "Nos", "Finished Goods", "Final product", "http://example.com/specs/motor.pdf", ""
+        1, "Nos", "Finished Goods", "Final product", "Yes", "http://example.com/specs/motor.pdf", ""
     ])
 
     # Row 7 sample data for sub BOM
     ws.append([
         "FG-SA-004", "Motor Sub Assembly", "Sub motor assembly", "", "AB-98-DF",
-        1, "Nos", "Sub Assemblies", "Semi finished product", "http://example.com/specs/motor.pdf", "SubAssy1"
+        1, "Nos", "Sub Assemblies", "Semi finished product", "No", "http://example.com/specs/motor.pdf", "SubAssy1"
     ])
 
     # Bold header row (row 5)
@@ -187,7 +192,7 @@ def download_bom_template():
     # sample row 6
     sub.append([
         "SUB-001", "Stator Sub-Assembly", "Stator unit", "Siemens", "S-ST-010",
-        1, "Nos", "Sub Assembly", "Refer SubAssy1", "http://example.com/specs/stator.pdf", ""
+        1, "Nos", "Sub Assembly", "Refer SubAssy1", "No", "http://example.com/specs/stator.pdf", ""
     ])
 
     # Bold headers row 5

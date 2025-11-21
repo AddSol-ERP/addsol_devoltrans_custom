@@ -37,3 +37,8 @@
     color: #1e3a8a !important;
     border-color: #93c5fd !important;
 }
+
+/* -------- NAVBAR -------- */
+.navbar, .navbar .standard-navbar {
+    background-color: #a3c7f1 !important;
+}
