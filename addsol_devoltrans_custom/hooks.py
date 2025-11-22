@@ -162,7 +162,11 @@ after_migrate = [
 
 doc_events = {
     "Sales Order": {
+        "after_insert": "addsol_devoltrans_custom.events.sales_order.after_insert",
         "on_submit": "addsol_devoltrans_custom.events.sales_order.on_submit"
+    },
+    "Project": {
+        "after_insert": "addsol_devoltrans_custom.events.project.after_insert_project"
     }
 }
 
@@ -330,3 +334,6 @@ override_whitelisted_methods = {
 # _load_modules_from_dir(f"{app_name}.events", doc_events, "doc_events")
 # _load_scheduler_jobs()
 # _load_whitelisted_methods()
+
+# # Fixures
+# fixtures = ["Custom Field"]

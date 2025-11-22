@@ -28,14 +28,16 @@ def upload_bom_excel(project: str, file_url: str):
     if not file_path:
         frappe.throw(_("File not found on server."))
 
-    try:
-        created_boms = _process_bom_sheet(project, file_path, "BOM")
-        frappe.logger("bom_upload").info(f"{len(created_boms)} BOMs created for project {project}")
-    except Exception as e:
-        frappe.log_error(frappe.get_traceback(), "BOM Upload Failed")
-        frappe.throw(_("Error while processing BOM Excel: {0}").format(str(e)))
+    # try:
+    #     created_boms = _process_bom_sheet(project, file_path, "BOM")
+    #     frappe.logger("bom_upload").info(f"{len(created_boms)} BOMs created for project {project}")
+    # except Exception as e:
+    #     frappe.log_error(frappe.get_traceback(), "BOM Upload Failed")
+    #     frappe.throw(_("Error while processing BOM Excel: {0}").format(str(e)))
 
-    return _(f"✅ Successfully created {len(created_boms)} BOM(s) for project {project}.")
+    # return _(f"✅ Successfully created {len(created_boms)} BOM(s) for project {project}.")
+
+    return _(f" Currently upload functionality is not enabled.")
 
 
 # --------------------------------------------------------------------------- #
