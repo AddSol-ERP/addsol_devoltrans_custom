@@ -2,7 +2,11 @@ import frappe
 
 def delete_custom_fields():
     # List of all custom fields your app creates
-    fields = [
+    item_group_fields = [
+        "project_mandatory"
+    ]
+
+    item_fields = [
         "tc_required",
         "linked_project",
         "remarks",
@@ -14,7 +18,10 @@ def delete_custom_fields():
         "drawing_ref",
     ]
 
-    for fieldname in fields:
+    for fieldname in item_group_fields:
+        frappe.db.delete("Custom Field", {"fieldname": fieldname, "dt": "Item Group"})
+
+    for fieldname in item_fields:
         frappe.db.delete("Custom Field", {"fieldname": fieldname, "dt": "Item"})
 
     frappe.clear_cache()

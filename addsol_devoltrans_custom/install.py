@@ -1,6 +1,27 @@
 import frappe
 from frappe.custom.doctype.custom_field.custom_field import create_custom_fields
 
+def add_custom_fields():
+    create_item_group_custom_fields()
+    create_item_custom_fields()
+    
+def create_item_group_custom_fields():
+    if frappe.db.exists("Custom Field", "Item Group-project_mandatory"):
+        return
+
+    frappe.get_doc({
+        "doctype": "Custom Field",
+        "dt": "Item Group",
+        "fieldname": "project_mandatory",
+        "fieldtype": "Check",
+        "label": "Project Mandatory",
+        "description": "Is project manadatory for this group of items?",
+        "insert_after": "is_group",
+        "default": "1"
+    }).insert(ignore_permissions=True)
+
+    frappe.clear_cache(doctype="Item Group")
+
 def create_item_custom_fields():
     # Group 1: Fields after stock_uom (no internal chaining)
     group1 = {

@@ -27,8 +27,7 @@ def after_insert(doc, event):
         return
 
     # new name format → SO-####-<ProjectID>
-    # project_id = project.split(":")[0] if "-" in project else project
-    new_name = f"{doc.name}: {project_id}"
+    new_name = f"{project_id}: {doc.name}"
 
     # if name already matches pattern, skip
     if new_name == doc.name:
