@@ -93,6 +93,7 @@ doctype_js = {"Project": "public/js/project.js"}
 # before_install = "addsol_devoltrans_custom.install.before_install"
 # after_install = "addsol_devoltrans_custom.install.after_install"
 after_install = "addsol_devoltrans_custom.doctype.item_custom_fields.create_item_custom_fields"
+before_uninstall = "addsol_devoltrans_custom.uninstall.delete_custom_fields"
 
 
 # Uninstallation
@@ -156,17 +157,20 @@ after_install = "addsol_devoltrans_custom.doctype.item_custom_fields.create_item
 # }
 
 after_migrate = [
-    "addsol_devoltrans_custom.events.sales_order.create_custom_auto_generate_project_field"
+    # "addsol_devoltrans_custom.events.sales_order.create_custom_auto_generate_project_field"
 ]
 
 
 doc_events = {
     "Sales Order": {
         "after_insert": "addsol_devoltrans_custom.events.sales_order.after_insert",
-        "on_submit": "addsol_devoltrans_custom.events.sales_order.on_submit"
+        # "on_submit": "addsol_devoltrans_custom.events.sales_order.on_submit"
     },
     "Project": {
         "after_insert": "addsol_devoltrans_custom.events.project.after_insert_project"
+    },
+    "Item": {
+        "after_insert": "addsol_devoltrans_custom.events.item.after_insert_item"
     }
 }
 

@@ -1,5 +1,6 @@
 import frappe
 
+# On creation of new project rename the project by adding code generated.
 def after_insert_project(doc, event):
     """
     Rename Project as <project_id>: <project_name> immediately after creation.
