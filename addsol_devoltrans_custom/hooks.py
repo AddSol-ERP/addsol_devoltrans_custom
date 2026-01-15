@@ -165,7 +165,7 @@ after_migrate = [
 doc_events = {
     "Sales Order": {
         "after_insert": "addsol_devoltrans_custom.events.sales_order.after_insert",
-        # "on_submit": "addsol_devoltrans_custom.events.sales_order.on_submit"
+        "on_submit": "addsol_devoltrans_custom.events.sales_order.on_submit_sales_order"
     },
     "Project": {
         "after_insert": "addsol_devoltrans_custom.events.project.after_insert_project"
@@ -343,3 +343,17 @@ override_whitelisted_methods = {
 
 # # Fixures
 # fixtures = ["Custom Field"]
+fixtures = [
+    {
+        "doctype": "Print Format",
+        "filters": {
+            "name": ["in", [
+                "Sales Order Without Price",
+                "Purchase Order",
+                "Sales invoice",
+                "Salary Slip Format"
+            ]]
+        }
+    },
+    {"doctype": "Client Script", "filters": [["module", "in", ("Addsol Devoltrans Custom")]]}
+]

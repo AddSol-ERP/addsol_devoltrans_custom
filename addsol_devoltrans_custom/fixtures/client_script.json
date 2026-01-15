@@ -1,0 +1,35 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Work Order",
+  "enabled": 1,
+  "modified": "2026-01-15 21:18:06.399873",
+  "module": "Addsol Devoltrans Custom",
+  "name": "Work Order",
+  "script": "frappe.ui.form.on(\"Work Order\", {\n    onload(frm) {\n        // Disable or hide BOM field when docstatus = 0 (Draft)\n        if (frm.doc.docstatus === 0) {\n            frm.set_df_property(\"bom_no\", \"read_only\", 1);\n            // Or to hide entirely:\n            // frm.set_df_property(\"bom_no\", \"hidden\", 1);\n        }\n    },\n    refresh(frm) {\n        // Optionally, if you want to enable BOM later when status changes:\n        if (frm.doc.production_ready) {   // example custom field or status\n            frm.set_df_property(\"bom_no\", \"read_only\", 0);\n            frm.set_df_property(\"bom_no\", \"hidden\", 0);\n        }\n    }\n});\n",
+  "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Purchase Order",
+  "enabled": 1,
+  "modified": "2025-12-24 17:01:34.624925",
+  "module": "Addsol Devoltrans Custom",
+  "name": "Purchaser Order Item File Show",
+  "script": "frappe.ui.form.on(\"Purchase Order\", {\n    refresh(frm) {\n        // Avoid duplicate button\n        if (frm.__item_attachments_btn_added) return;\n        frm.__item_attachments_btn_added = true;\n\n        frm.add_custom_button(\n            __(\"Item Attachments\"),\n            () => {\n                show_po_item_attachments(frm);\n            }\n        );\n    }\n});\n\nfunction show_po_item_attachments(frm) {\n    const items = frm.doc.items || [];\n\n    if (!items.length) {\n        frappe.msgprint(\"No items found in this Purchase Order.\");\n        return;\n    }\n\n    // Collect unique item codes\n    const item_codes = [...new Set(items.map(i => i.item_code).filter(Boolean))];\n\n    if (!item_codes.length) {\n        frappe.msgprint(\"No valid items found.\");\n        return;\n    }\n\n    frappe.call({\n        method: \"frappe.client.get_list\",\n        args: {\n            doctype: \"File\",\n            filters: {\n                attached_to_doctype: \"Item\",\n                attached_to_name: [\"in\", item_codes]\n            },\n            fields: [\"file_name\", \"file_url\", \"attached_to_name\"]\n        },\n        callback(r) {\n            if (!r.message || !r.message.length) {\n                frappe.msgprint(\"No attachments found for items in this PO.\");\n                return;\n            }\n\n            // Group files by item\n            const grouped = {};\n            r.message.forEach(f => {\n                grouped[f.attached_to_name] = grouped[f.attached_to_name] || [];\n                grouped[f.attached_to_name].push(f);\n            });\n\n            // Build HTML\n            let html = `<div style=\"max-height:60vh; overflow:auto;\">`;\n\n            item_codes.forEach(item_code => {\n                html += `<h4 style=\"margin-top:12px;\">${item_code}</h4>`;\n\n                if (!grouped[item_code]) {\n                    html += `<p style=\"color:#888;\">No attachments</p>`;\n                    return;\n                }\n\n                html += `<ul style=\"padding-left:18px;\">`;\n                grouped[item_code].forEach(f => {\n                    html += `\n                        <li>\n                            📎 <a href=\"${f.file_url}\" target=\"_blank\">\n                                ${f.file_name}\n                            </a>\n                        </li>\n                    `;\n                });\n                html += `</ul>`;\n            });\n\n            html += `</div>`;\n\n            frappe.msgprint({\n                title: \"Item Attachments\",\n                message: html,\n                wide: true\n            });\n        }\n    });\n}",
+  "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "BOM",
+  "enabled": 1,
+  "modified": "2025-12-29 11:41:28.904980",
+  "module": "Addsol Devoltrans Custom",
+  "name": "Bom Show Attach",
+  "script": "frappe.ui.form.on(\"BOM\", {\n    refresh(frm) {\n        // Avoid duplicate button\n        if (frm.__item_attachments_btn_added) return;\n        frm.__item_attachments_btn_added = true;\n\n        frm.add_custom_button(\n            __(\"Item Attachments\"),\n            () => {\n                show_po_item_attachments(frm);\n            }\n        );\n    }\n});\n\nfunction show_po_item_attachments(frm) {\n    const items = frm.doc.items || [];\n\n    if (!items.length) {\n        frappe.msgprint(\"No items found in this Purchase Order.\");\n        return;\n    }\n\n    // Collect unique item codes\n    const item_codes = [...new Set(items.map(i => i.item_code).filter(Boolean))];\n\n    if (!item_codes.length) {\n        frappe.msgprint(\"No valid items found.\");\n        return;\n    }\n\n    frappe.call({\n        method: \"frappe.client.get_list\",\n        args: {\n            doctype: \"File\",\n            filters: {\n                attached_to_doctype: \"Item\",\n                attached_to_name: [\"in\", item_codes]\n            },\n            fields: [\"file_name\", \"file_url\", \"attached_to_name\"]\n        },\n        callback(r) {\n            if (!r.message || !r.message.length) {\n                frappe.msgprint(\"No attachments found for items in this PO.\");\n                return;\n            }\n\n            // Group files by item\n            const grouped = {};\n            r.message.forEach(f => {\n                grouped[f.attached_to_name] = grouped[f.attached_to_name] || [];\n                grouped[f.attached_to_name].push(f);\n            });\n\n            // Build HTML\n            let html = `<div style=\"max-height:60vh; overflow:auto;\">`;\n\n            item_codes.forEach(item_code => {\n                html += `<h4 style=\"margin-top:12px;\">${item_code}</h4>`;\n\n                if (!grouped[item_code]) {\n                    html += `<p style=\"color:#888;\">No attachments</p>`;\n                    return;\n                }\n\n                html += `<ul style=\"padding-left:18px;\">`;\n                grouped[item_code].forEach(f => {\n                    html += `\n                        <li>\n                            📎 <a href=\"${f.file_url}\" target=\"_blank\">\n                                ${f.file_name}\n                            </a>\n                        </li>\n                    `;\n                });\n                html += `</ul>`;\n            });\n\n            html += `</div>`;\n\n            frappe.msgprint({\n                title: \"Item Attachments\",\n                message: html,\n                wide: true\n            });\n        }\n    });\n}",
+  "view": "Form"
+ }
+]
