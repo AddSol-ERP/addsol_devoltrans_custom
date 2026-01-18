@@ -345,6 +345,10 @@ override_whitelisted_methods = {
 # fixtures = ["Custom Field"]
 fixtures = [
     {
+        "dt": "Role",
+        "filters": [["name", "=", "Senior Management"]]
+    },
+    {
         "doctype": "Print Format",
         "filters": {
             "name": ["in", [
