@@ -1,0 +1,65 @@
+[
+ {
+  "completed_by": "Administrator",
+  "completed_by_role": "Sales User",
+  "docstatus": 0,
+  "doctype": "Workflow Action",
+  "modified": "2026-01-14 12:55:09.463410",
+  "name": "c2mhricet2",
+  "permitted_roles": [
+   {
+    "parent": "c2mhricet2",
+    "parentfield": "permitted_roles",
+    "parenttype": "Workflow Action",
+    "role": "Sales User"
+   }
+  ],
+  "reference_doctype": "Quotation",
+  "reference_name": "SAL-QTN-2026-00001",
+  "status": "Completed",
+  "user": null,
+  "workflow_state": "Draft"
+ },
+ {
+  "completed_by": "pramod@devoltrans.com",
+  "completed_by_role": "Senior Management",
+  "docstatus": 0,
+  "doctype": "Workflow Action",
+  "modified": "2026-01-14 12:55:25.172892",
+  "name": "c7jsko59am",
+  "permitted_roles": [
+   {
+    "parent": "c7jsko59am",
+    "parentfield": "permitted_roles",
+    "parenttype": "Workflow Action",
+    "role": "Senior Management"
+   }
+  ],
+  "reference_doctype": "Quotation",
+  "reference_name": "SAL-QTN-2026-00001",
+  "status": "Completed",
+  "user": null,
+  "workflow_state": "Waiting For Approval"
+ },
+ {
+  "completed_by": null,
+  "completed_by_role": null,
+  "docstatus": 0,
+  "doctype": "Workflow Action",
+  "modified": "2026-01-18 15:29:12.635466",
+  "name": "lb63s79gj2",
+  "permitted_roles": [
+   {
+    "parent": "lb63s79gj2",
+    "parentfield": "permitted_roles",
+    "parenttype": "Workflow Action",
+    "role": "Sales User"
+   }
+  ],
+  "reference_doctype": "Quotation",
+  "reference_name": "SAL-QTN-2026-00002",
+  "status": "Open",
+  "user": null,
+  "workflow_state": "Draft"
+ }
+]

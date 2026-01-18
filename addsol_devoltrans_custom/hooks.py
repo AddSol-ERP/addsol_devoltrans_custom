@@ -366,5 +366,7 @@ fixtures = [
         }
     },
     {"doctype": "Client Script", "filters": [["module", "in", ("Addsol Devoltrans Custom")]]},
-    {"dt": "Workflow"}
+    {"dt": "Workflow"},
+    {"dt": "Workflow State"},
+    {"dt": "Workflow Action"}
 ]
