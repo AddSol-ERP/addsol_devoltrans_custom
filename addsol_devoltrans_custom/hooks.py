@@ -349,6 +349,12 @@ fixtures = [
         "filters": [["name", "=", "Senior Management"]]
     },
     {
+        "dt": "Custom DocPerm",
+        "filters": [
+           ["role", "=", "Senior Management"]
+        ]
+    },
+    {
         "doctype": "Print Format",
         "filters": {
             "name": ["in", [
