@@ -355,6 +355,14 @@ fixtures = [
         ]
     },
     {
+        "dt": "Email Group",
+        "filters": [["name", "in", ["Sales Order Notification List"]]]
+    },
+    {
+        "dt": "Email Group Member",
+        "filters": [["email_group", "in", ["Sales Order Notification List"]]]
+    },
+    {
         "doctype": "Print Format",
         "filters": {
             "name": ["in", [
