@@ -1,0 +1,14 @@
+[
+ {
+  "add_query_parameters": 0,
+  "confirmation_email_template": null,
+  "docstatus": 0,
+  "doctype": "Email Group",
+  "modified": "2026-01-17 19:26:02.297676",
+  "name": "Sales Order Notification List",
+  "title": "Sales Order Notification List",
+  "total_subscribers": 6,
+  "welcome_email_template": null,
+  "welcome_url": null
+ }
+]

@@ -5,26 +5,9 @@ import uuid
 
 # Temporary assign code to bypass duplicate validation 
 def before_insert_item(doc, method):
-    # Validate if project is present for marked item group
-    item_group = (doc.item_group or "").strip()
-    project = (doc.linked_project or "").strip()
-
-    # 1. Load item group settings
-    item_group_doc = frappe.get_cached_doc("Item Group", item_group)
-
-    # 2. Check "Project Mandatory" flag
-    if getattr(item_group_doc, "project_mandatory", 0) and not project:
-        frappe.throw(_("Project is mandatory for Item Group: {0}").format(item_group))
-
     """Assign a temporary unique code to bypass duplicate checks."""
     original_code = (doc.item_code or "").strip()
     project = (doc.linked_project or "").strip()
-    item_group = (doc.item_group or "").strip()
-
-    # Validate mandatory project
-    required_groups = ["Finished Goods", "Raw Material"]
-    if item_group in required_groups and not project:
-        frappe.throw(_("Project is mandatory for Item Group: {0}").format(item_group))
 
     if not project:
         return
