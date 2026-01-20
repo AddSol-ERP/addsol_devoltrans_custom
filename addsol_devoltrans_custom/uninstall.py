@@ -9,11 +9,9 @@ def delete_custom_fields():
     item_fields = [
         "tc_required",
         "linked_project",
-        "remarks",
-        "section_make_partno",
-        "make",
+        "design_remarks",
+        "item_make",
         "material_grade",
-        "column_break_make_partno",
         "part_number",
         "drawing_ref",
     ]
